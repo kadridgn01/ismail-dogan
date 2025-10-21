@@ -2,7 +2,6 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>İsmail DOĞAN - Resmi Web Sitesi</title>
@@ -10,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700,900|Open+Sans:400,500&display=swap&subset=latin-ext" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
 
     <style>
         :root {
@@ -21,7 +22,6 @@
             --dark-gray: #555555;
         }
 
-        /* Genel Sayfa Sıfırlama */
         body, html {
             margin: 0;
             padding: 0;
@@ -30,23 +30,18 @@
             color: var(--text-color);
             scroll-behavior: smooth;
             background-color: var(--light-bg);
-            /* YATAY KAYDIRMAYI (KAYMALARI) ÖNLEME */
             overflow-x: hidden;
         }
 
-        /* Üst Menü (Navbar) */
         nav {
             background: var(--primary-color);
+            width: 100%;
             padding: 15px 30px;
+            box-sizing: border-box; 
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: fixed;
-            /* width: calc(100% - 60px); 
-               'calc' yerine 'box-sizing' kullanmak kaymaları engellemek için daha iyidir */
-            width: 100%;
-            padding: 15px 30px;
-            box-sizing: border-box; /* Padding'i genişliğe dahil et */
             top: 0;
             left: 0;
             z-index: 1000;
@@ -82,13 +77,12 @@
             color: var(--secondary-color);
         }
 
-        /* Hamburger Menü İkonu (Mobil için) */
         .menu-toggle {
             display: none;
             flex-direction: column;
             cursor: pointer;
             padding: 10px;
-            z-index: 1001; /* Menü linklerinin üstünde kalması için */
+            z-index: 1001; 
         }
         .menu-toggle .bar {
             width: 25px;
@@ -98,12 +92,10 @@
             transition: all 0.3s ease-in-out;
         }
         
-        /* 1. "Hero" (Ana Karşılama) Bölümü */
         .hero {
             background-image: linear-gradient(rgba(36, 53, 85, 0.85), rgba(36, 53, 85, 0.85)), url('arka-plan.jpg');
             background-size: cover;
             background-position: center;
-            /* Navbar'ın kapladığı alanı boşaltmak için padding-top */
             padding: 140px 30px 100px 30px; 
             text-align: center;
             color: var(--white);
@@ -111,7 +103,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 70vh; /* Yüksekliği biraz azalttık */
+            min-height: 70vh;
         }
 
         .hero-photo {
@@ -141,7 +133,6 @@
             max-width: 800px;
         }
 
-        /* ... .cta-button stilleri aynı ... */
         .cta-button {
             background-color: var(--secondary-color);
             color: var(--primary-color);
@@ -174,17 +165,16 @@
             border-color: var(--secondary-color);
         }
 
-        /* Genel İçerik Alanı */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 50px 20px;
-            box-sizing: border-box; /* Padding'in kaydırma yapmasını engelle */
+            box-sizing: border-box;
         }
 
         section {
             padding: 60px 0;
-            width: 100%; /* Kaymayı engellemek için */
+            width: 100%;
             box-sizing: border-box;
         }
         
@@ -192,7 +182,6 @@
             background-color: var(--light-bg);
         }
 
-        /* Bölüm Başlıkları */
         h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 3em;
@@ -212,7 +201,6 @@
             border-radius: 2px;
         }
 
-        /* Hakkında (Biyografi) Bölümü */
         .about-content {
             display: flex;
             align-items: flex-start;
@@ -225,7 +213,6 @@
             border-radius: 10px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
             flex-shrink: 0;
-            /* MOBİL İYİLEŞTİRME: Genişliği %100 yap */
             max-width: 100%;
         }
         .about-text {
@@ -238,13 +225,11 @@
             margin-bottom: 18px;
         }
 
-        /* Projeler Bölümü */
         .policy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
-        /* ... .policy-card stilleri aynı ... */
         .policy-card {
             background: var(--white);
             border: 1px solid #e0e0e0;
@@ -279,7 +264,6 @@
             font-size: 1em;
         }
         
-        /* Fotoğraf Galerisi Stilleri */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -319,9 +303,10 @@
             background-color: var(--white);
             font-size: 0.9em;
             border-top: 1px solid #f0f0f0;
+            /* Resim altı yazı için minimum yükseklik (isteğe bağlı) */
+            min-height: 1.2em; 
         }
 
-        /* İletişim Bölümü */
         #destek {
             text-align: center;
         }
@@ -333,7 +318,6 @@
         }
         .social-links {
             margin-top: 40px;
-            /* MOBİL İYİLEŞTİRME: Sosyal medya linkleri taşarsa alt satıra geçsin */
             flex-wrap: wrap;
             justify-content: center;
             display: flex;
@@ -343,7 +327,7 @@
             font-weight: 500;
             color: var(--primary-color);
             text-decoration: none;
-            margin: 5px 15px; /* Dikeyde de boşluk verdik */
+            margin: 5px 15px;
             transition: color 0.3s ease, transform 0.3s ease;
         }
         .social-links a:hover {
@@ -351,152 +335,81 @@
             transform: translateY(-3px);
         }
 
-        /* Footer (Alt Kısım) */
         footer {
             background: var(--primary-color);
             color: var(--white);
             text-align: center;
-            padding: 35px 20px; /* Kenar boşluğu */
+            padding: 35px 20px;
             font-size: 0.95em;
         }
         footer p {
             margin: 7px 0;
             opacity: 0.85;
         }
-
-        /* ====================================
-           MOBİL UYUMLULUK (RESPONSIVE) STİLLERİ
-           ==================================== */
         
-        /* TABLET STİLLERİ */
+        /* ... (Tüm @media mobil uyumluluk stilleri burada) ... */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3em;
-            }
-            .hero .slogan {
-                font-size: 1.4em;
-            }
-            h2 {
-                font-size: 2.5em;
-            }
-            .about-content {
-                flex-direction: column; /* Biyografi: Fotoğraf üste, yazı alta */
-                align-items: center;
-            }
-            .about-photo {
-                width: 100%; /* Fotoğraf genişlesin */
-                height: auto;
-                max-width: 400px; /* Ama çok da büyümesin */
-            }
-            .about-text {
-                text-align: left; /* 'justify' yerine 'left' mobilde daha okunaklı */
-            }
+            .hero h1 { font-size: 3em; }
+            .hero .slogan { font-size: 1.4em; }
+            h2 { font-size: 2.5em; }
+            .about-content { flex-direction: column; align-items: center; }
+            .about-photo { width: 100%; height: auto; max-width: 400px; }
+            .about-text { text-align: left; }
         }
-
-        /* TELEFON STİLLERİ (En Önemli İyileştirmeler Burada) */
         @media (max-width: 768px) {
-            nav {
-                padding: 10px 20px;
-            }
-            
-            /* DÜZELTME: Logo yazısının boyutu küçültüldü */
-            .nav-logo {
-                font-size: 1.5em; 
-            }
-
+            nav { padding: 10px 20px; }
+            .nav-logo { font-size: 1.5em; }
             .nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
                 background-color: var(--primary-color);
                 position: absolute;
-                top: 57px; /* Nav yüksekliğine göre ayarlandı */
+                top: 57px; 
                 left: 0;
                 padding: 10px 0;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             }
-            .nav-links.active {
-                display: flex;
-            }
+            .nav-links.active { display: flex; }
             .nav-links li {
                 margin: 0;
                 text-align: center;
                 border-bottom: 1px solid rgba(255,255,255,0.1);
             }
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-            .nav-links a {
-                display: block;
-                padding: 15px 0;
-                font-size: 1.1em;
-            }
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero {
-                padding: 100px 20px 60px 20px; /* Üst boşluk azaltıldı */
-                min-height: 60vh;
-            }
-            .hero h1 {
-                font-size: 2.5em;
-            }
-            .hero .slogan {
-                font-size: 1.2em;
-            }
-            .hero-photo {
-                width: 140px;
-                height: 140px;
-                border-width: 4px;
-            }
-            .cta-button {
-                padding: 12px 25px;
-                font-size: 1em;
-            }
-
-            h2 {
-                font-size: 2em;
-                margin-bottom: 30px;
-            }
-            h2::after {
-                width: 60px;
-                height: 3px;
-                margin-top: 10px;
-            }
-
-            .container {
-                padding: 30px 15px; /* Kenar boşlukları azaltıldı */
-            }
-            section {
-                padding: 40px 0;
-            }
-            
-            /* Kart başlıkları küçültüldü */
-            .policy-card h3 {
-                font-size: 1.3em;
-            }
-            .policy-card h3::after {
-                width: 40px;
-                height: 2px;
-            }
-            .policy-card {
-                padding: 20px; /* Kart içi boşluk azaltıldı */
-            }
-
-            /* Galeri resim yüksekliği mobilde azaltıldı */
-            .gallery-item img {
-                height: 180px;
-            }
-
-            #destek p {
-                font-size: 1.1em;
-            }
-            .social-links a {
-                font-size: 1.1em;
-                margin: 5px 10px;
-            }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-links a { display: block; padding: 15px 0; font-size: 1.1em; }
+            .menu-toggle { display: flex; }
+            .hero { padding: 100px 20px 60px 20px; min-height: 60vh; }
+            .hero h1 { font-size: 2.5em; }
+            .hero .slogan { font-size: 1.2em; }
+            .hero-photo { width: 140px; height: 140px; border-width: 4px; }
+            .cta-button { padding: 12px 25px; font-size: 1em; }
+            h2 { font-size: 2em; margin-bottom: 30px; }
+            h2::after { width: 60px; height: 3px; margin-top: 10px; }
+            .container { padding: 30px 15px; }
+            section { padding: 40px 0; }
+            .policy-card h3 { font-size: 1.3em; }
+            .policy-card h3::after { width: 40px; height: 2px; }
+            .policy-card { padding: 20px; }
+            .gallery-item img { height: 180px; }
+            #destek p { font-size: 1.1em; }
+            .social-links a { font-size: 1.1em; margin: 5px 10px; }
         }
+        
+        /* ===============================================================
+         YENİ - Lightbox stilini (arka plan rengi vb.) hafifçe ezelim
+         ===============================================================
+        */
+        .lb-data .lb-caption {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.1em !important;
+            font-weight: 500 !important;
+        }
+        
+        .lb-loader {
+            background-color: var(--primary-color); /* Yüklenme ikonu rengi */
+        }
+
     </style>
 </head>
 <body>
@@ -522,11 +435,8 @@
     <header class="hero" id="home">
         
         <img src="ana-profil.jpg" alt="İsmail Doğan Profil Fotoğrafı" class="hero-photo">
-        
         <h1>İSMAİL DOĞAN</h1>
-        
         <p class="slogan">Mardin İçin Hizmet / Toplum Lideri</p>
-        
         <div>
             <a href="#destek" class="cta-button">İletişime Geçin</a>
             <a href="#projeler" class="cta-button secondary">Çalışmalarımızı İnceleyin</a>
@@ -534,47 +444,23 @@
     </header>
 
     <main>
-
         <section id="hakkinda" class="container">
             <h2>Biyografi</h2>
             <div class="about-content">
-                
                 <img src="biyografi-foto.jpg" alt="İsmail Doğan Biyografi Fotoğrafı" class="about-photo">
-                
                 <div class="about-text">
-                    <p>
-                        1 Ocak 1990 tarihinde doğan İsmail Doğan, Mardin'in Kızıltepe ilçesinde ikamet etmektedir. 
-                        Genç yaşta başladığı kariyer yolculuğunu, topluma hizmetle birleştiren Doğan, evli ve dört çocuk babasıdır.
-                    </p>
-                    <p>
-                        2008 yılı itibarıyla ticari hayatına Kızıltepe'de başlamıştır. Bayraktar Transport Uluslararası Nakliyat Limited Şirketi bünyesinde, 
-                        gıda ve otomotiv yedek parça sektörlerinde uluslararası sevkiyat ve ticari işlemleri başarıyla yürütmüştür.
-                    </p>
-                    <p>
-                        2013 yılında Mardin Kızıltepe ilçesinde Hesenan Aşireti Federasyonu Başkanlığı görevine seçilmiştir. 
-                        Bu görevde, Mardin bölgesinin kritik meselelerinden biri olan terörün sonlandırılması çabalarında Şırnak, Hakkari, Muş ve Van illerini 
-                        kapsayan önemli bir misyon üstlenmiştir.
-                    </p>
-                    <p>
-                        2019 yılında Adalet ve Kalkınma Partisi (AK Parti) Mardin İl Teşkilatında Teşkilat Başkanlığı görevini üstlenmiştir.
-                    </p> 
-                     <p>
-                        2023 yılında, Almanya'nın Hamburg kentindeki büyük aileler tarafından kendisine sunulan siyasi teklifler neticesinde, 
-                        Dışişleri Bakanlığı ile ortak siyasi çalışmalara katılmıştır.
-                    </p>
+                    <p>1 Ocak 1990 tarihinde doğan İsmail Doğan, Mardin'in Kızıltepe ilçesinde ikamet etmektedir. Genç yaşta başladığı kariyer yolculuğunu, topluma hizmetle birleştiren Doğan, evli ve dört çocuk babasıdır.</p>
+                    <p>2008 yılı itibarıyla ticari hayatına Kızıltepe'de başlamıştır. Bayraktar Transport Uluslararası Nakliyat Limited Şirketi bünyesinde, gıda ve otomotiv yedek parça sektörlerinde uluslararası sevkiyat ve ticari işlemleri başarıyla yürütmüştür.</p>
+                    <p>2013 yılında Mardin Kızıltepe ilçesinde Hesenan Aşireti Federasyonu Başkanlığı görevine seçilmiştir. Bu görevde, Mardin bölgesinin kritik meselelerinden biri olan terörün sonlandırılması çabalarında Şırnak, Hakkari, Muş ve Van illerini kapsayan önemli bir misyon üstlenmiştir.</p>
+                    <p>2019 yılında Adalet ve Kalkınma Partisi (AK Parti) Mardin İl Teşkilatında Teşkilat Başkanlığı görevini üstlenmiştir.</p> 
+                    <p>2023 yılında, Almanya'nın Hamburg kentindeki büyük aileler tarafından kendisine sunulan siyasi teklifler neticesinde, Dışişleri Bakanlığı ile ortak siyasi çalışmalara katılmıştır.</p>
                 </div>
             </div>
         </section>
-
         <section id="projeler" style="background-color: var(--light-bg);">
             <div class="container">
                 <h2>Çalışmalar ve Projeler</h2>
-                
-                <p style="text-align: center; max-width: 800px; margin: -20px auto 40px auto; font-size: 1.1em; color: var(--dark-gray);">
-                    Hem ticari hem de toplumsal alanda yürüttüğümüz başlıca faaliyetler ve 
-                    bölgemiz için hayata geçirmeyi planladığımız projelerimiz.
-                </p>
-                
+                <p style="text-align: center; max-width: 800px; margin: -20px auto 40px auto; font-size: 1.1em; color: var(--dark-gray);">Hem ticari hem de toplumsal alanda yürüttüğümüz başlıca faaliyetler ve bölgemiz için hayata geçirmeyi planladığımız projelerimiz.</p>
                 <div class="policy-grid">
                     <div class="policy-card">
                         <h3>Bölgesel Kalkınma ve Ticaret</h3>
@@ -602,49 +488,43 @@
             <div class="gallery-grid">
                 
                 <div class="gallery-item">
-                    <a href="photo1.jpg" target="_blank">
+                    <a href="photo1.jpg" data-lightbox="galeri" data-title="Halk Buluşması - Kızıltepe">
                         <img src="photo1.jpg" alt="Galeri Fotoğrafı 1">
-                        <p></p>
+                        <p>Halk Buluşması - Kızıltepe</p>
                     </a>
                 </div>
                 
                 <div class="gallery-item">
-                    <a href="photo2.jpg" target="_blank">
+                    <a href="photo2.jpg" data-lightbox="galeri" data-title="Teşkilat Toplantısı">
                         <img src="photo2.jpg" alt="Galeri Fotoğrafı 2">
-                        <p></p>
+                        <p>Teşkilat Toplantısı</p>
                     </a>
                 </div>
                 
                 <div class="gallery-item">
-                    <a href="photo3.jpg" target="_blank">
+                    <a href="photo3.jpg" data-lightbox="galeri" data-title="Proje İncelemesi">
                         <img src="photo3.jpg" alt="Galeri Fotoğrafı 3">
-                        <p></p>
+                        <p>Proje İncelemesi</p>
                     </a>
                 </div>
                 
                 <div class="gallery-item">
-                    <a href="photo4.jpg" target="_blank">
+                    <a href="photo4.jpg" data-lightbox="galeri" data-title="Gençlerle Bir Araya Geldik">
                         <img src="photo4.jpg" alt="Galeri Fotoğrafı 4">
-                        <p></p>
+                        <p>Gençlerle Bir Araya Geldik</p>
                     </a>
                 </div>
-            
-            </div> 
+                
+                </div> 
         </section>
         
         
         <section id="destek" class="container" style="background-color: var(--light-bg);">
             <h2>Bizimle İletişime Geçin</h2>
-            
-            <p>
-                Görüş, öneri ve destekleriniz bizim için çok değerli. 
-                Aşağıdaki kanallardan veya sosyal medya hesaplarımız üzerinden bize ulaşabilirsiniz.
-            </p>
-            
+            <p>Görüş, öneri ve destekleriniz bizim için çok değerli. Aşağıdaki kanallardan veya sosyal medya hesaplarımız üzerinden bize ulaşabilirsiniz.</p>
             <div>
                 <a href="mailto:info@ismail-dogan.com" class="cta-button">E-Posta Gönderin</a>
             </div>
-            
             <div class="social-links">
                 <a href="#" target="_blank">Twitter / X</a>
                 <a href="#" target="_blank">Facebook</a>
@@ -657,7 +537,10 @@
 
     <footer>
         <p>&copy; 2025 İSMAİL DOĞAN. Tüm hakları saklıdır.</p>
-        </footer>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 
     <script>
         // Mobil menü (hamburger menü) işlevselliği
