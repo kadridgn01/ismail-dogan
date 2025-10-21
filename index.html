@@ -3,213 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adınız Soyadınız - Özgeçmiş</title>
     
+    <title>ADAYIN ADI SOYADI - Şehriniz İçin Güçlü Bir Gelecek</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
-        /* Genel Sayfa Stilleri */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
+        /* Renk Paleti - Bu renkleri partinizin veya kampanyanIzIn renkleriyle değiştirebilirsiniz */
+        :root {
+            --primary-color: #003366;  /* Ana Renk (Güven veren Koyu Mavi) */
+            --secondary-color: #B22222;/* Vurgu Rengi (Eylem için Koyu Kırmızı) */
+            --text-color: #333333;      /* Metin Rengi */
+            --light-bg: #f9f9f9;      /* Açık Arka Plan */
+            --white: #ffffff;
+        }
+
+        /* Genel Sayfa Sıfırlama */
+        body, html {
             margin: 0;
             padding: 0;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            scroll-behavior: smooth; /* Sayfa içi linklere yumuşak kaydırma */
         }
 
-        /* Ana İçerik Alanı */
+        /* Üst Menü (Navbar) */
+        nav {
+            background: var(--white);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 60px); /* Padding'i hesaba kat */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-logo {
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            font-size: 1.8em;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 25px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* 1. "Hero" (Ana Karşılama) Bölümü */
+        .hero {
+            /* ANA ARKA PLAN FOTOĞRAFI
+               'arka-plan.jpg' yazan yeri kendi fotoğrafınızla değiştirin.
+               Bu fotoğrafın aday fotoğrafı değil, şehir manzarası veya miting fotoğrafı olması daha iyi durur.
+            */
+            background-image: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('arka-plan.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 180px 30px 100px 30px; /* Üst padding'i nav yüksekliği için artırdık */
+            text-align: center;
+            color: var(--white);
+        }
+
+        /* HERO BÖLÜMÜNDEKİ ANA FOTOĞRAF (Adayın Fotoğrafı) */
+        .hero-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            object-fit: cover; /* Fotoğrafın orantısını korur */
+        }
+        
+        .hero h1 {
+            font-family: 'Lato', sans-serif;
+            font-size: 3.5em;
+            font-weight: 900;
+            margin: 20px 0 10px 0;
+            color: var(--white);
+        }
+        
+        .hero .slogan {
+            font-size: 1.5em;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Eyleme Çağrı Butonları */
+        .cta-button {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            background-color: var(--white);
+            color: var(--secondary-color);
+        }
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+        }
+         .cta-button.secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* Genel İçerik Alanı */
         .container {
-            max-width: 900px;
-            margin: 20px auto;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            overflow: hidden; /* Kenar boşluklarını düzeltmek için */
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        /* Üst Başlık Alanı */
-        header {
-            background-color: #004a99; /* Ana renk (Mavi tonu) */
-            color: #ffffff;
-            padding: 40px;
+        section {
+            padding: 50px 0;
+        }
+        
+        section:nth-child(even) { /* Bölümleri ayırmak için (çift sıralı olanlar) */
+            background-color: var(--light-bg);
+        }
+
+        /* Bölüm Başlıkları */
+        h2 {
+            font-family: 'Lato', sans-serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Hakkında (Biyografi) Bölümü */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .about-photo {
+            /* HAKKINDA BÖLÜMÜ FOTOĞRAFI */
+            width: 300px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .about-text {
+            flex: 1;
+            font-size: 1.1em;
+        }
+
+        /* Projeler / Vaatler Bölümü */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .policy-card {
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .policy-card h3 {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.4em;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        /* Destek Ol / İletişim Bölümü */
+        #destek {
             text-align: center;
         }
-
-        /* PROFİL FOTOĞRAFI STİLİ */
-        header img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%; /* Fotoğrafı yuvarlak yapar */
-            border: 4px solid #ffffff;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        header h1 {
-            margin: 10px 0 5px 0;
-            font-size: 2.5em;
-        }
-
-        header h2 {
-            margin: 0;
+        #destek p {
             font-size: 1.2em;
-            font-weight: 300;
-            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
         }
-
-        /* Ana İçerik (Özgeçmiş Bölümleri) */
-        .content {
-            padding: 30px 40px;
-        }
-
-        /* Bölüm Başlıkları (Hakkımda, Deneyim, Eğitim vb.) */
-        h3 {
-            color: #004a99;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 5px;
+        .social-links {
             margin-top: 30px;
         }
-
-        /* Bölümler */
-        .section {
-            margin-bottom: 20px;
+        .social-links a {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--secondary-color);
         }
 
-        /* İletişim Bilgileri Listesi */
-        .contact-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .contact-list li {
-            margin-bottom: 8px;
-        }
-        .contact-list strong {
-            display: inline-block;
-            width: 80px; /* "Email:", "Telefon:" gibi başlıkları hizalar */
-        }
-
-        /* İş Deneyimi */
-        .job {
-            margin-bottom: 20px;
-        }
-        .job h4 {
-            margin: 0 0 5px 0;
-            font-size: 1.1em;
-            color: #111;
-        }
-        .job .company {
-            font-style: italic;
-            color: #555;
-            margin: 0 0 10px 0;
-        }
-
-        /* Beceriler Listesi */
-        .skills-list {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-
-        /* Alt Bilgi (Footer) */
+        /* Footer (Alt Kısım) */
         footer {
+            background: var(--primary-color);
+            color: var(--white);
             text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: #aaa;
-            margin-top: 20px;
+            padding: 30px;
+        }
+        footer p {
+            margin: 5px 0;
+            opacity: 0.8;
         }
 
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <nav>
+        <a href="#home" class="nav-logo">ADAYIN ADI</a>
         
-        <header>
-            
-            <img src="profil.jpg" alt="Profil Fotoğrafı">
-            
-            <h1>ADINIZ SOYADINIZ</h1>
-            
-            <h2>Web Geliştirici / Grafik Tasarımcı / Öğrenci</h2>
+        <ul class="nav-links">
+            <li><a href="#home">Ana Sayfa</a></li>
+            <li><a href="#hakkinda">Biyografi</a></li>
+            <li><a href="#projeler">Projeler</a></li>
+            <li><a href="#destek">Bize Katılın</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="home">
         
-        </header>
+        <img src="ana-profil.jpg" alt="Adayın Profil Fotoğrafı" class="hero-photo">
+        
+        <h1>ADAYIN ADI SOYADI</h1>
+        
+        <p class="slogan">ŞEHRİNİZİN ADI / BÖLGENİZİN ADI Belediye Başkan Adayı</p>
+        
+        <div>
+            <a href="#destek" class="cta-button">Gönüllü Ol</a>
+            <a href="#projeler" class="cta-button secondary">Projelerimizi İnceleyin</a>
+        </div>
+    </header>
 
-        <main class="content">
+    <main>
 
-            <section class="section" id="hakkimda">
-                <h3>Hakkımda / Profil</h3>
-                <p>
-                    Buraya kendinizi tanıtan kısa bir paragraf yazın. Kariyer hedeflerinizden,
-                    tutkularınızdan ve sizi öne çıkaran özelliklerinizden bahsedebilirsiniz.
-                    Örneğin: "Teknolojiye tutkulu, sonuç odaklı ve yaratıcı bir yazılım geliştiriciyim..."
-                </p>
-            </section>
-
-            <section class="section" id="iletisim">
-                <h3>İletişim Bilgileri</h3>
-                <ul class="contact-list">
-                    <li><strong>Email:</strong> emailiniz@adresiniz.com</li>
-                    <li><strong>Telefon:</strong> +90 (555) 123 45 67</li>
-                    <li><strong>Web:</strong> www.websiteniz.com</li>
-                    <li><strong>LinkedIn:</strong> linkedin.com/in/profiliniz</li>
-                    <li><strong>Adres:</strong> Şehir, Ülke</li>
-                </ul>
-            </section>
-
-            <section class="section" id="deneyim">
-                <h3>İş Deneyimi</h3>
+        <section id="hakkinda" class="container">
+            <h2>Biyografi</h2>
+            <div class="about-content">
                 
-                <div class="job">
-                    <h4>Kıdemli Web Geliştirici</h4>
-                    <p class="company">Teknoloji A.Ş. | Ocak 2020 - Günümüz</p>
-                    <ul>
-                        <li>Buraya o iş yerindeki bir görevinizi yazın.</li>
-                        <li>Proje geliştirme süreçlerinde aktif rol alındı.</li>
-                        <li>Yeni teknolojiler araştırıldı ve ekibe entegre edildi.</li>
-                    </ul>
-                </div>
+                <img src="biyografi-foto.jpg" alt="Adayın Biyografi Fotoğrafı" class="about-photo">
                 
-                <div class="job">
-                    <h4>Web Geliştirici Stajyeri</h4>
-                    <p class="company">Web Çözümleri Ltd. | Haziran 2019 - Ağustos 2019</p>
-                    <ul>
-                        <li>Mevcut web sitelerinin bakım ve güncellemeleri yapıldı.</li>
-                        <li>HTML, CSS ve JavaScript kullanarak basit arayüzler kodlandı.</li>
-                    </ul>
+                <div class="about-text">
+                    <p>
+                        Buraya adayın doğum yeri, eğitimi, kariyeri ve siyasete giriş hikayesini yazın.
+                        Neden aday olduğunu, şehre/bölgeye nasıl bir sevgi duyduğunu anlatan
+                        samimi bir metin olmalı.
+                    </p>
+                    <p>
+                        İkinci paragrafta ise tecrübelerinden ve topluma yaptığı katkılardan bahsedebilirsiniz.
+                        Güvenilirlik ve liyakat vurgusu önemlidir.
+                    </p>
                 </div>
-                </section>
+            </div>
+        </section>
 
-            <section class="section" id="egitim">
-                <h3>Eğitim</h3>
-
-                <div class="job"> <h4>Bilgisayar Mühendisliği (Lisans)</h4>
-                    <p class="company">Örnek Üniversite | 2015 - 2019</p>
-                    <p>Not Ortalaması: 3.50 / 4.00</p>
-                </div>
+        <section id="projeler" style="background-color: var(--light-bg);">
+            <div class="container">
+                <h2>Vizyonumuz ve Projelerimiz</h2>
                 
-                <div class="job">
-                    <h4>Sayısal Bölüm</h4>
-                    <p class="company">Örnek Anadolu Lisesi | 2011 - 2015</p>
+                <div class="policy-grid">
+                    
+                    <div class="policy-card">
+                        <h3>Ulaşım ve Altyapı</h3>
+                        <p>Şehrimizin trafik sorununu kökten çözecek modern, hızlı ve çevreci toplu taşıma sistemlerini hayata geçireceğiz...</p>
+                    </div>
+                    
+                    <div class="policy-card">
+                        <h3>Yeşil Alanlar ve Çevre</h3>
+                        <p>Kişi başına düşen yeşil alan miktarını iki katına çıkaracak, nefes alan bir şehir için yeni kent ormanları kuracağız...</p>
+                    </div>
+
+                    <div class="policy-card">
+                        <h3>Sosyal Belediyecilik</h3>
+                        <p>İhtiyaç sahibi vatandaşlarımıza destek olacak, gençlerimize ve kadınlara yönelik yeni sosyal merkezler açacağız...</p>
+                    </div>
+                    
+                    <div class="policy-card">
+                        <h3>Eğitim ve Teknoloji</h3>
+                        <p>Okullarımıza teknoloji sınıfları kuracak ve gençlerimiz için ücretsiz kodlama eğitimleri başlatacağız...</p>
+                    </div>
+                    
+                    <div class="policy-card">
+                        <h3>Kültür ve Sanat</h3>
+                        <p>Şehrimizi bir kültür başkenti yapmak için yeni sanat galerileri ve festivaller düzenleyeceğiz...</p>
+                    </div>
+                    
+                    <div class="policy-card">
+                        <h3>Şeffaf Yönetim</h3>
+                        <p>Belediye bütçesini ve ihaleleri canlı olarak yayınlayacak, hesap verebilir bir yönetim anlayışı getireceğiz...</p>
+                    </div>
+                    
+                </div> </div>
+        </section>
+        
+        <section id="destek" class="container">
+            <h2>Bize Katılın, Birlikte Kazanalım!</h2>
+            
+            <p>
+                Bu şehri daha yaşanabilir bir hale getirmek için çıktığımız bu yolda sizin de desteğinize ihtiyacımız var.
+                Gönüllü olarak ekibimize katılın veya sosyal medyada sesimizi duyurun.
+            </p>
+            
+            <div>
+                <a href="mailto:gonullu@adayinpartisi.com" class="cta-button">Gönüllü Ol</a>
+                
                 </div>
-            </section>
+            
+            <div class="social-links">
+                <a href="https://twitter.com/kullaniciadi" target="_blank">Twitter / X</a>
+                <a href="https://facebook.com/kullaniciadi" target="_blank">Facebook</a>
+                <a href="https://instagram.com/kullaniciadi" target="_blank">Instagram</a>
+            </div>
+        </section>
 
-            <section class="section" id="beceriler">
-                <h3>Beceriler</h3>
-                <ul class="skills-list">
-                    <li>HTML5 & CSS3</li>
-                    <li>JavaScript (ES6+)</li>
-                    <li>React & Node.js</li>
-                    <li>Python (Django)</li>
-                    <li>SQL & MongoDB</li>
-                    <li>Git & GitHub</li>
-                    <li>Adobe Photoshop</li>
-                </ul>
-            </section>
-
-        </main>
-
-    </div>
+    </main>
 
     <footer>
-        <p>&copy; 2025 Adınız Soyadınız. Tüm hakları saklıdır.</p>
+        <p>&copy; 2025 ADAYIN ADI SOYADI. Tüm hakları saklıdır.</p>
+        
+        <p>Bu site [Parti Adı / Bağımsız Aday] seçim kampanyası için hazırlanmıştır.</p>
     </footer>
 
 </body>
