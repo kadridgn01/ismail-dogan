@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>İsmail DOĞAN - Resmi Web Sitesi</title>
@@ -11,12 +12,11 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700,900|Open+Sans:400,500&display=swap&subset=latin-ext" rel="stylesheet">
 
     <style>
-        /* Renk Paleti - Referans Görsele Göre Güncellendi */
         :root {
-            --primary-color: #243555;  /* Referanstaki Koyu Mavi */
-            --secondary-color: #FFD700;/* Referanstaki Sarı/Altın (Vurgu) */
-            --text-color: #333333;      /* Genel Metin Rengi */
-            --light-bg: #f5f7f9;      /* Açık Arka Plan */
+            --primary-color: #243555;
+            --secondary-color: #FFD700;
+            --text-color: #333333;
+            --light-bg: #f5f7f9;
             --white: #ffffff;
             --dark-gray: #555555;
         }
@@ -25,12 +25,13 @@
         body, html {
             margin: 0;
             padding: 0;
-            /* FONT DEĞİŞİKLİĞİ: Metinler 'Open Sans' oldu */
             font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             scroll-behavior: smooth;
             background-color: var(--light-bg);
+            /* YATAY KAYDIRMAYI (KAYMALARI) ÖNLEME */
+            overflow-x: hidden;
         }
 
         /* Üst Menü (Navbar) */
@@ -41,7 +42,11 @@
             justify-content: space-between;
             align-items: center;
             position: fixed;
-            width: calc(100% - 60px);
+            /* width: calc(100% - 60px); 
+               'calc' yerine 'box-sizing' kullanmak kaymaları engellemek için daha iyidir */
+            width: 100%;
+            padding: 15px 30px;
+            box-sizing: border-box; /* Padding'i genişliğe dahil et */
             top: 0;
             left: 0;
             z-index: 1000;
@@ -49,7 +54,6 @@
         }
 
         .nav-logo {
-            /* FONT DEĞİŞİKLİĞİ: Logo 'Montserrat' oldu */
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             font-size: 1.8em;
@@ -84,6 +88,7 @@
             flex-direction: column;
             cursor: pointer;
             padding: 10px;
+            z-index: 1001; /* Menü linklerinin üstünde kalması için */
         }
         .menu-toggle .bar {
             width: 25px;
@@ -98,14 +103,15 @@
             background-image: linear-gradient(rgba(36, 53, 85, 0.85), rgba(36, 53, 85, 0.85)), url('arka-plan.jpg');
             background-size: cover;
             background-position: center;
-            padding: 180px 30px 100px 30px;
+            /* Navbar'ın kapladığı alanı boşaltmak için padding-top */
+            padding: 140px 30px 100px 30px; 
             text-align: center;
             color: var(--white);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 80vh;
+            min-height: 70vh; /* Yüksekliği biraz azalttık */
         }
 
         .hero-photo {
@@ -119,7 +125,6 @@
         }
         
         .hero h1 {
-            /* FONT DEĞİŞİKLİĞİ: Ana Başlık 'Montserrat' oldu */
             font-family: 'Montserrat', sans-serif;
             font-size: 3.8em;
             font-weight: 900;
@@ -136,6 +141,7 @@
             max-width: 800px;
         }
 
+        /* ... .cta-button stilleri aynı ... */
         .cta-button {
             background-color: var(--secondary-color);
             color: var(--primary-color);
@@ -173,10 +179,13 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 50px 20px;
+            box-sizing: border-box; /* Padding'in kaydırma yapmasını engelle */
         }
 
         section {
             padding: 60px 0;
+            width: 100%; /* Kaymayı engellemek için */
+            box-sizing: border-box;
         }
         
         section:nth-child(even) {
@@ -185,7 +194,6 @@
 
         /* Bölüm Başlıkları */
         h2 {
-            /* FONT DEĞİŞİKLİĞİ: Bölüm Başlıkları 'Montserrat' oldu */
             font-family: 'Montserrat', sans-serif;
             font-size: 3em;
             font-weight: 700;
@@ -217,6 +225,8 @@
             border-radius: 10px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
             flex-shrink: 0;
+            /* MOBİL İYİLEŞTİRME: Genişliği %100 yap */
+            max-width: 100%;
         }
         .about-text {
             flex: 1;
@@ -228,12 +238,13 @@
             margin-bottom: 18px;
         }
 
-        /* Projeler / Vaatler Bölümü */
+        /* Projeler Bölümü */
         .policy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
+        /* ... .policy-card stilleri aynı ... */
         .policy-card {
             background: var(--white);
             border: 1px solid #e0e0e0;
@@ -247,7 +258,6 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
         .policy-card h3 {
-            /* FONT DEĞİŞİKLİĞİ: Kart Başlıkları 'Montserrat' oldu */
             font-family: 'Montserrat', sans-serif;
             font-size: 1.5em;
             color: var(--primary-color);
@@ -269,47 +279,37 @@
             font-size: 1em;
         }
         
-        /* ====================================
-           YENİ: FOTOĞRAF GALERİSİ STİLLERİ
-           ==================================== */
+        /* Fotoğraf Galerisi Stilleri */
         .gallery-grid {
             display: grid;
-            /* Mobil uyumlu grid: En az 250px'lik, en fazla 1fr'lik sütunlar oluştur */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
-
         .gallery-item {
             border-radius: 10px;
-            overflow: hidden; /* Taşan kısımları (zoom için) gizle */
+            overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             background-color: var(--white);
         }
-        
         .gallery-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
-
         .gallery-item a {
             display: block;
             text-decoration: none;
         }
-
         .gallery-item img {
             width: 100%;
-            height: 220px; /* Sabit bir yükseklik vererek grid'i düzenli tutarız */
-            object-fit: cover; /* Resmin orantısını bozmadan sığdırır */
+            height: 220px;
+            object-fit: cover;
             display: block;
             transition: transform 0.3s ease;
         }
-        
         .gallery-item:hover img {
-            transform: scale(1.05); /* Resme zoom efekti */
+            transform: scale(1.05);
         }
-        
-        /* Resim Altı Başlık */
         .gallery-item p {
             margin: 0;
             padding: 15px;
@@ -321,8 +321,7 @@
             border-top: 1px solid #f0f0f0;
         }
 
-
-        /* Destek Ol / İletişim Bölümü */
+        /* İletişim Bölümü */
         #destek {
             text-align: center;
         }
@@ -334,13 +333,17 @@
         }
         .social-links {
             margin-top: 40px;
+            /* MOBİL İYİLEŞTİRME: Sosyal medya linkleri taşarsa alt satıra geçsin */
+            flex-wrap: wrap;
+            justify-content: center;
+            display: flex;
         }
         .social-links a {
             font-size: 1.3em;
             font-weight: 500;
             color: var(--primary-color);
             text-decoration: none;
-            margin: 0 20px;
+            margin: 5px 15px; /* Dikeyde de boşluk verdik */
             transition: color 0.3s ease, transform 0.3s ease;
         }
         .social-links a:hover {
@@ -353,7 +356,7 @@
             background: var(--primary-color);
             color: var(--white);
             text-align: center;
-            padding: 35px;
+            padding: 35px 20px; /* Kenar boşluğu */
             font-size: 0.95em;
         }
         footer p {
@@ -364,7 +367,9 @@
         /* ====================================
            MOBİL UYUMLULUK (RESPONSIVE) STİLLERİ
            ==================================== */
-        @media (max-width: 992px) { /* Tabletler ve daha küçük ekranlar */
+        
+        /* TABLET STİLLERİ */
+        @media (max-width: 992px) {
             .hero h1 {
                 font-size: 3em;
             }
@@ -375,30 +380,37 @@
                 font-size: 2.5em;
             }
             .about-content {
-                flex-direction: column;
+                flex-direction: column; /* Biyografi: Fotoğraf üste, yazı alta */
                 align-items: center;
             }
             .about-photo {
-                width: 80%;
+                width: 100%; /* Fotoğraf genişlesin */
                 height: auto;
-                max-width: 350px;
+                max-width: 400px; /* Ama çok da büyümesin */
             }
             .about-text {
-                text-align: left;
+                text-align: left; /* 'justify' yerine 'left' mobilde daha okunaklı */
             }
         }
 
-        @media (max-width: 768px) { /* Telefonlar */
+        /* TELEFON STİLLERİ (En Önemli İyileştirmeler Burada) */
+        @media (max-width: 768px) {
             nav {
                 padding: 10px 20px;
             }
+            
+            /* DÜZELTME: Logo yazısının boyutu küçültüldü */
+            .nav-logo {
+                font-size: 1.5em; 
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
                 background-color: var(--primary-color);
                 position: absolute;
-                top: 60px;
+                top: 57px; /* Nav yüksekliğine göre ayarlandı */
                 left: 0;
                 padding: 10px 0;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.2);
@@ -424,8 +436,8 @@
             }
 
             .hero {
-                padding: 120px 20px 80px 20px;
-                min-height: 70vh;
+                padding: 100px 20px 60px 20px; /* Üst boşluk azaltıldı */
+                min-height: 60vh;
             }
             .hero h1 {
                 font-size: 2.5em;
@@ -454,12 +466,13 @@
             }
 
             .container {
-                padding: 30px 15px;
+                padding: 30px 15px; /* Kenar boşlukları azaltıldı */
             }
             section {
                 padding: 40px 0;
             }
             
+            /* Kart başlıkları küçültüldü */
             .policy-card h3 {
                 font-size: 1.3em;
             }
@@ -467,13 +480,21 @@
                 width: 40px;
                 height: 2px;
             }
+            .policy-card {
+                padding: 20px; /* Kart içi boşluk azaltıldı */
+            }
+
+            /* Galeri resim yüksekliği mobilde azaltıldı */
+            .gallery-item img {
+                height: 180px;
+            }
 
             #destek p {
                 font-size: 1.1em;
             }
             .social-links a {
                 font-size: 1.1em;
-                margin: 0 10px;
+                margin: 5px 10px;
             }
         }
     </style>
@@ -537,7 +558,7 @@
                     <p>
                         2019 yılında Adalet ve Kalkınma Partisi (AK Parti) Mardin İl Teşkilatında Teşkilat Başkanlığı görevini üstlenmiştir.
                     </p> 
-                    <p>
+                     <p>
                         2023 yılında, Almanya'nın Hamburg kentindeki büyük aileler tarafından kendisine sunulan siyasi teklifler neticesinde, 
                         Dışişleri Bakanlığı ile ortak siyasi çalışmalara katılmıştır.
                     </p>
@@ -564,7 +585,7 @@
                         <p>Federasyon başkanlığı dönemimizde edindiğimiz tecrübe ile bölgemizin huzur ve güvenliği için çalışmalar yürütmek...</p>
                     </div>
                     <div class="policy-card">
-                        <h3>Uluslararası İlişkiler</h3>
+                        <h3>Uluslararası İlişikler</h3>
                         <p>Avrupa'daki vatandaşlarımızla ve uluslararası ortaklarla ilişkileri güçlendirerek bölgemize yeni yatırımlar çekmek...</p>
                     </div>
                     <div class="policy-card">
@@ -608,7 +629,8 @@
                     </a>
                 </div>
             
-            </div> </section>
+            </div> 
+        </section>
         
         
         <section id="destek" class="container" style="background-color: var(--light-bg);">
@@ -635,7 +657,7 @@
 
     <footer>
         <p>&copy; 2025 İSMAİL DOĞAN. Tüm hakları saklıdır.</p>
-    </footer>
+        </footer>
 
     <script>
         // Mobil menü (hamburger menü) işlevselliği
@@ -646,7 +668,7 @@
             navLinks.classList.toggle('active');
         });
 
-        // Menü linklerine tıklandığında menüyü kapat (Yeni 'Galeri' linki de dahil edildi)
+        // Menü linklerine tıklandığında menüyü kapat
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
