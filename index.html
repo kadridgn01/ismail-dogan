@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adınız Soyadınız - Özgeçmiş</title>
+    
+    <style>
+        /* Genel Sayfa Stilleri */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Ana İçerik Alanı */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden; /* Kenar boşluklarını düzeltmek için */
+        }
+
+        /* Üst Başlık Alanı */
+        header {
+            background-color: #004a99; /* Ana renk (Mavi tonu) */
+            color: #ffffff;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* PROFİL FOTOĞRAFI STİLİ */
+        header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Fotoğrafı yuvarlak yapar */
+            border: 4px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 10px 0 5px 0;
+            font-size: 2.5em;
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Ana İçerik (Özgeçmiş Bölümleri) */
+        .content {
+            padding: 30px 40px;
+        }
+
+        /* Bölüm Başlıkları (Hakkımda, Deneyim, Eğitim vb.) */
+        h3 {
+            color: #004a99;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        /* Bölümler */
+        .section {
+            margin-bottom: 20px;
+        }
+
+        /* İletişim Bilgileri Listesi */
+        .contact-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .contact-list li {
+            margin-bottom: 8px;
+        }
+        .contact-list strong {
+            display: inline-block;
+            width: 80px; /* "Email:", "Telefon:" gibi başlıkları hizalar */
+        }
+
+        /* İş Deneyimi */
+        .job {
+            margin-bottom: 20px;
+        }
+        .job h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+            color: #111;
+        }
+        .job .company {
+            font-style: italic;
+            color: #555;
+            margin: 0 0 10px 0;
+        }
+
+        /* Beceriler Listesi */
+        .skills-list {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        /* Alt Bilgi (Footer) */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #aaa;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            
+            <img src="profil.jpg" alt="Profil Fotoğrafı">
+            
+            <h1>ADINIZ SOYADINIZ</h1>
+            
+            <h2>Web Geliştirici / Grafik Tasarımcı / Öğrenci</h2>
+        
+        </header>
+
+        <main class="content">
+
+            <section class="section" id="hakkimda">
+                <h3>Hakkımda / Profil</h3>
+                <p>
+                    Buraya kendinizi tanıtan kısa bir paragraf yazın. Kariyer hedeflerinizden,
+                    tutkularınızdan ve sizi öne çıkaran özelliklerinizden bahsedebilirsiniz.
+                    Örneğin: "Teknolojiye tutkulu, sonuç odaklı ve yaratıcı bir yazılım geliştiriciyim..."
+                </p>
+            </section>
+
+            <section class="section" id="iletisim">
+                <h3>İletişim Bilgileri</h3>
+                <ul class="contact-list">
+                    <li><strong>Email:</strong> emailiniz@adresiniz.com</li>
+                    <li><strong>Telefon:</strong> +90 (555) 123 45 67</li>
+                    <li><strong>Web:</strong> www.websiteniz.com</li>
+                    <li><strong>LinkedIn:</strong> linkedin.com/in/profiliniz</li>
+                    <li><strong>Adres:</strong> Şehir, Ülke</li>
+                </ul>
+            </section>
+
+            <section class="section" id="deneyim">
+                <h3>İş Deneyimi</h3>
+                
+                <div class="job">
+                    <h4>Kıdemli Web Geliştirici</h4>
+                    <p class="company">Teknoloji A.Ş. | Ocak 2020 - Günümüz</p>
+                    <ul>
+                        <li>Buraya o iş yerindeki bir görevinizi yazın.</li>
+                        <li>Proje geliştirme süreçlerinde aktif rol alındı.</li>
+                        <li>Yeni teknolojiler araştırıldı ve ekibe entegre edildi.</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <h4>Web Geliştirici Stajyeri</h4>
+                    <p class="company">Web Çözümleri Ltd. | Haziran 2019 - Ağustos 2019</p>
+                    <ul>
+                        <li>Mevcut web sitelerinin bakım ve güncellemeleri yapıldı.</li>
+                        <li>HTML, CSS ve JavaScript kullanarak basit arayüzler kodlandı.</li>
+                    </ul>
+                </div>
+                </section>
+
+            <section class="section" id="egitim">
+                <h3>Eğitim</h3>
+
+                <div class="job"> <h4>Bilgisayar Mühendisliği (Lisans)</h4>
+                    <p class="company">Örnek Üniversite | 2015 - 2019</p>
+                    <p>Not Ortalaması: 3.50 / 4.00</p>
+                </div>
+                
+                <div class="job">
+                    <h4>Sayısal Bölüm</h4>
+                    <p class="company">Örnek Anadolu Lisesi | 2011 - 2015</p>
+                </div>
+            </section>
+
+            <section class="section" id="beceriler">
+                <h3>Beceriler</h3>
+                <ul class="skills-list">
+                    <li>HTML5 & CSS3</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>React & Node.js</li>
+                    <li>Python (Django)</li>
+                    <li>SQL & MongoDB</li>
+                    <li>Git & GitHub</li>
+                    <li>Adobe Photoshop</li>
+                </ul>
+            </section>
+
+        </main>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Adınız Soyadınız. Tüm hakları saklıdır.</p>
+    </footer>
+
+</body>
+</html>
